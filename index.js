@@ -20,6 +20,13 @@ app.get("/test", (_req, res) =>  {
   res.status(200).send("Hello world")
 })
 
+let port = process.env.PORT;
+if  ( port == null ||  port ==""){
+  port = 3000;
+}
 
+app.listen(port, () =>
+  console.log('App listening on port 3000!'),
+);
 
 module.exports = app;
