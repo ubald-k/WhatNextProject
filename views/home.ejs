@@ -1,5 +1,62 @@
 <%- include("partials/header") -%>
-<h1>This is the home page</h1>
-<p>Our app is the music app called WhatNext used as a music recommendation system Balaji
-</p>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <form class="d-flex" action="/music" method="post">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchItem">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nom Musique</th>
+      <th scope="col">URL Youtube</th>
+      <th scope="col">Cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+<% musics.forEach(function(music){ %>
+
+    <tr>
+      <td> <%= music.track.name_track %> </td>
+      <td> <%= music.track.url_youtube %> </td>
+      <td> <%= music.track.cluster %> </td>
+    </tr>
+
+  <%  }) %>
+  </tbody>
+</table>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nom Musique</th>
+      <th scope="col">URL Youtube</th>
+      <th scope="col">Cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+<% musicsAll.forEach(function(music){ %>
+
+    <tr>
+      <td> <%= music.track.name_track %> </td>
+      <td> <%= music.track.url_youtube %> </td>
+      <td> <%= music.track.cluster %> </td>
+    </tr>
+
+  <%  }) %>
+  </tbody>
+</table>
 <%- include("partials/footer") -%>
