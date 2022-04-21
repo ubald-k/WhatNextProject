@@ -11,6 +11,8 @@ const app = express();
 //Using ejs as the frobnt end template
 app.set('view engine', 'ejs');
 
+app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -47,6 +49,11 @@ const MusicModel = mongoose.model("music", MusicSchema, "collection_what_next");
 app.get("/", function(req, res) {
 
   res.render("home", {musics :musics, musicsAll :musicsAll});
+});
+
+app.get("/welcome", function(req, res) {
+
+  res.render("welcome", {musics :musics, musicsAll :musicsAll});
 });
 
 app.get("/music", function(req, res) {
