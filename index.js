@@ -3,6 +3,7 @@ const mongoose =  require("mongoose");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const request = require('request');
+const var_dump = require('var_dump')
 
 
 // Declaration of the application
@@ -43,18 +44,32 @@ item :Number
 
 const MusicModel = mongoose.model("music", MusicSchema, "collection_what_next");
 
- musics = [];
- musicsAll = [];
+musics = [];
+musicsAll = [];
+musicsAll_1 = []
 
 app.get("/", function(req, res) {
+  //res.end('bonjour');
 
   res.render("home", {musics :musics, musicsAll :musicsAll});
 });
 
 app.get("/welcome", function(req, res) {
-
   res.render("welcome", {musics :musics, musicsAll :musicsAll});
 });
+
+app.get("/suggest", function(req, res) {
+   
+  MusicModel.find({}, function(err, results) {
+    if (!err) {
+      res.render("suggest", {musics :musics, musicsAll :results});
+    } else {
+      console.log(err);
+    }
+  }).limit(10)
+
+});
+
 
 app.get("/music", function(req, res) {
   MusicModel.find(function(err, results) {
